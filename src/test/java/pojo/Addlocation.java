@@ -2,7 +2,7 @@ package pojo;
 
 import java.util.List;
 
-public class locationPostPayload {
+public class Addlocation {
 	private locationDetails location;
 	private int accuracy;
 	private String name;

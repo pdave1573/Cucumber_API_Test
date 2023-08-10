@@ -3,14 +3,13 @@ package resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import pojo.locationDetails;
-import pojo.locationPostPayload;
+import pojo.*;
 
 public class dataBuild {
 
-	public locationPostPayload addPlaceDataBuild() {
+	public Addlocation addPlaceDataBuild() {
 		// BODY
-		locationPostPayload postData = new locationPostPayload();
+		Addlocation postData = new Addlocation();
 		postData.setAccuracy(50);
 		postData.setName("Frontline house");
 		postData.setPhone_number("(+91) 983 893 3937");
