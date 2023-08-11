@@ -17,9 +17,9 @@ public class placeAPI extends utility{
 		request = given().spec(requestSpecification()).body(db.addPlaceDataBuild());
 	}
 
-	@When("user calls {string} with post http request")
-	public void user_calls_add_place_api_with_post_http_request(String api) throws InvalidAlgorithmParameterException {
-		callAPI(api);
+	@When("user calls {string} with {string} http request")
+	public void user_calls_add_place_api_with_post_http_request(String api, String httpMethod) throws InvalidAlgorithmParameterException {
+		callAPI(api, httpMethod);
 	}
 
 	@Then("the API call is success with status code {int}")
