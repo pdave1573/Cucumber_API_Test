@@ -2,14 +2,10 @@ package stepdefs;
 
 import java.security.InvalidAlgorithmParameterException;
 
-import org.junit.Assert;
-
 import io.cucumber.java.en.*;
 import resource.*;
 
 import static io.restassured.RestAssured.*;
-import io.restassured.response.Response;
-import io.restassured.specification.*;
 
 public class placeAPI extends utility{
 	

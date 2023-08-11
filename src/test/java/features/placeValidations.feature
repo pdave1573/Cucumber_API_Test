@@ -12,3 +12,4 @@ Feature: Validating the place API
     Examples:
     |	API					|	responseCode	|	field_check	|	responseStatus	|	
     |	AddPlaceAPI	|	200						|	status			|	OK							|	
+    

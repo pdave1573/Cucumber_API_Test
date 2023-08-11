@@ -1,11 +1,16 @@
 package resource;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.security.InvalidAlgorithmParameterException;
 
 import org.junit.Assert;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -17,14 +22,29 @@ public class utility {
 	
 	RequestSpecification req;
 	ResponseSpecification res;
+	String logFileLocation = "./logs.log";
+	File file;
 	
 	protected RequestSpecification request;
 	protected Response response;
 	
 	public RequestSpecification requestSpecification() {
+		PrintStream log = null;
+		try {
+			log = new PrintStream(logFileLocation);
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			file = new File(logFileLocation);
+		}
 		req = new RequestSpecBuilder()
 				.setBaseUri("https://rahulshettyacademy.com/maps/api/place/")
 				.setContentType(ContentType.JSON)
+				.addFilter(RequestLoggingFilter.logRequestTo(log))
+				.addFilter(ResponseLoggingFilter.logResponseTo(log))
+				.addQueryParam("key", "qaclick123")
 				.build();
 		
 		return req;
