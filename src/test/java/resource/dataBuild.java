@@ -27,8 +27,18 @@ public class dataBuild {
 		l.setLat(-38.383494);
 		l.setLng(33.427362);
 		postData.setLocation(l);
-		
+
 		return postData;
+	}
+
+	public DeleteLocation deletePlaceDataBuild(String name) {
+		DeleteLocation DeleteLocation = new DeleteLocation();
+		utility ul = new utility();
+		DeleteLocation.setPlace_id(ul.placeIDMap.get(name));
+		String recentPlaceID = DeleteLocation.getPlace_id();
+		System.out.println("Deleting PlaceID: "+recentPlaceID);
+
+		return DeleteLocation;
 	}
 
 }
