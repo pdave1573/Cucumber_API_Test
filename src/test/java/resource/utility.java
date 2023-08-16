@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.security.InvalidAlgorithmParameterException;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -32,6 +33,7 @@ public class utility {
 
 	protected RequestSpecification request;
 	protected Response response;
+	static HashMap<String,String> placeIDMap = new HashMap<String,String>();
 
 	public RequestSpecification requestSpecification() {
 		if(req==null) {
@@ -93,6 +95,7 @@ public class utility {
 		if(httpMethod.equalsIgnoreCase("post")) {
 		response = request.when().post(resource.getResource())
 				.then().spec(responseSpecification()).extract().response();
+		
 		}
 		else if(httpMethod.equalsIgnoreCase("get")) {
 			response = request.when().get(resource.getResource())
@@ -112,6 +115,11 @@ public class utility {
 		JsonPath js = new JsonPath(response.asString());
 		Assert.assertEquals(js.get(key), value);
 	}
+	
+	public String getValue(Response response, String key) {
+		JsonPath js = new JsonPath(response.asString());
+		return js.get(key).toString();
+	}
 
 	public void printResponse(Response response) {
 		System.out.println(response.asPrettyString());
@@ -119,5 +127,14 @@ public class utility {
 
 	public void checkStatusCode(int responseCode) {
 		Assert.assertEquals(responseCode, response.getStatusCode());
+	}
+	
+	public void mapPlaceIDToName(String name) {
+		String placeID = getValue(response,"place_id");
+		placeIDMap.put(name, placeID);
+	}
+	
+	public String getMapValue(String name) {
+		return placeIDMap.get(name);
 	}
 }

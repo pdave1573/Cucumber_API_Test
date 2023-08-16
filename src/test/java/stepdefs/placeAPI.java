@@ -16,6 +16,17 @@ public class placeAPI extends utility{
 	public void add_place_payload() {
 		request = given().spec(requestSpecification()).body(db.addPlaceDataBuild());
 	}
+	
+	@Given("Get place at {string}")
+	public void get_place_payload(String name) {
+		String place_id = getMapValue(name);
+		request = given().spec(requestSpecification()).spec(requestSpecification().queryParam("place_id",place_id));
+	}
+	
+	@Given("Delete place at {string}")
+	public void delete_place_payload(String name) {
+		request = given().spec(requestSpecification()).body(db.deletePlaceDataBuild(name));
+	}
 
 	@When("user calls {string} with {string} http request")
 	public void user_calls_add_place_api_with_post_http_request(String api, String httpMethod) throws InvalidAlgorithmParameterException {
@@ -32,5 +43,11 @@ public class placeAPI extends utility{
 		valueCheck(response, key, value);
 		printResponse(response);
 	}
+	
+	@And("verify the place_id maps to {string}")
+	public void verify_the_place_id_maps_to(String name) {
+		mapPlaceIDToName(name);
+	}
+
 
 }
