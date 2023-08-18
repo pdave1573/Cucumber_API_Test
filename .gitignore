@@ -1,4 +1,6 @@
 *.log
 target/*
 test-output/
-target/
+target/*
+*.html
+*.pdf
