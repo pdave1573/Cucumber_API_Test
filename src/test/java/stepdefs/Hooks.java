@@ -1,6 +1,7 @@
 package stepdefs;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.AfterAll;
 
 public class Hooks {
 	
@@ -13,5 +14,9 @@ public class Hooks {
 	public void beforeScenario2(){
 		System.out.println("Running Scenario2 tag...");
 	}
-
+	
+	@AfterAll
+	public static void tearDown() {
+		//SendMailSSLWithAttachment email = new SendMailSSLWithAttachment();
+	}
 }

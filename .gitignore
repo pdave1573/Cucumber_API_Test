@@ -4,3 +4,8 @@ test-output/
 target/*
 *.html
 *.pdf
+test-output/SparkReport/Spark.html
+*.html
+*.pdf
+target/classes/META-INF/maven/API/Cucumber_API_Test/pom.properties
+target/classes/META-INF/maven/API/Cucumber_API_Test/pom.properties

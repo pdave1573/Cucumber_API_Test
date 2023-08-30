@@ -8,9 +8,9 @@ Rest Assured - Automate API testing\
 Jackson library - Validate the JSON response\
 Cucumber - Behavior Driven automation framework\
 Pojo - Serialized and Deserialized the payload\
-Extent report
+Extent report\
+PDF report
 
 To be implemented:
 =============================================================
-
 Excel integration

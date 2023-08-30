@@ -40,26 +40,28 @@ Feature: Validating the place API
     |	DeletePlaceAPI	|	Post				|	200						|	status			|	OK							|	TestData2 |
     
  @Scenario2
- Scenario: Add Place with custome data
+ Scenario: Add Place with custome Data Set: <name>
     Given Add place payload with "<name>" "<language>" "<website>"
     When user calls "<API>" with "<httpMethod>" http request
     Then the API call is success with status code <responseCode>
     And "<field_check>" in reponse is "<responseStatus>"
     And verify the place_id maps to "<name>"
+   #And this is test
     
     Examples:
-    |	name					|	language	| website					|	API					|	httpMethod	|	responseCode	|	field_check	|	responseStatus	|	name			|
-    |	VadodaraHouse	|	Gujarati	|	www.google.com	|	AddPlaceAPI	|	Post				|	200						|	status			|	OK							|	TestData1	|
-    |	AhmedabadHouse|	English		|	www.test.com		|	AddPlaceAPI	|	Post				|	200						|	status			|	OK							|	TestData2	|
+    |	name					|	language	| website					|	API					|	httpMethod	|	responseCode	|	field_check	|	responseStatus	|	name1			|
+    |	Toronto				|	Gujarati	|	www.google.com	|	AddPlaceAPI	|	Post				|	200						|	status			|	OK							|	TestData1	|
+    |	Vancouver			|	English		|	www.test.com		|	AddPlaceAPI	|	Post				|	200						|	status			|	OK							|	TestData2	|
+    #|	FailPlace			|	Tamil			|	www.tester.com	|	FailPlaceAPI|	Fail				|	200						|	status			|	OK							|	TestData3	|
  
  @Scenario2   
- Scenario: Get Place
+ Scenario: Get Place Data Set: <name>
     Given Get place at "<name>"
     When user calls "<API>" with "<httpMethod>" http request
     Then the API call is success with status code <responseCode>
     
     Examples:
-    |	API					|	httpMethod	|	responseCode	|	name					|
-    |	GetPlaceAPI	|	Get					|	200						|	VadodaraHouse |
-    |	GetPlaceAPI	|	Get					|	200						|	AhmedabadHouse|
+    |	API					|	httpMethod	|	responseCode	|	name			|
+    |	GetPlaceAPI	|	Get					|	200						|	Toronto		|
+    |	GetPlaceAPI	|	Get					|	200						|	Vancouver	|
     
