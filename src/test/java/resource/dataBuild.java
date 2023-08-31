@@ -20,8 +20,31 @@ public class dataBuild {
 		types.add("shop");
 		postData.setTypes(types);
 
-		postData.setWebsite("http://google.com");
+		postData.setWebsite("https://google.com");
 		postData.setLanguage("French-IN");
+
+		locationDetails l = new locationDetails();
+		l.setLat(-38.383494);
+		l.setLng(33.427362);
+		postData.setLocation(l);
+
+		return postData;
+	}
+	
+	public Addlocation addPlaceDataBuild(String name, String language, String website) {
+		Addlocation postData = new Addlocation();
+		postData.setAccuracy(50);
+		postData.setName(name);
+		postData.setPhone_number("(+91) 983 893 3937");
+		postData.setAddress("29, side layout, cohen 09");
+
+		List<String> types = new ArrayList<String>();
+		types.add("shoe park");
+		types.add("shop");
+		postData.setTypes(types);
+
+		postData.setWebsite(website);
+		postData.setLanguage(language);
 
 		locationDetails l = new locationDetails();
 		l.setLat(-38.383494);

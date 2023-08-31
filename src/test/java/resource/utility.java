@@ -3,9 +3,7 @@ package resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.security.InvalidAlgorithmParameterException;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -90,25 +88,31 @@ public class utility {
 	}
 
 	public void callAPI(String api, String httpMethod){
-		apiEndPointResources resource = apiEndPointResources.valueOf(api);
+		apiEndPointResources resource;
 		
 		if(httpMethod.equalsIgnoreCase("post")) {
-		response = request.when().post(resource.getResource())
-				.then().spec(responseSpecification()).extract().response();
+			resource = apiEndPointResources.valueOf(api);	
+			response = request.when().post(resource.getResource())
+					.then().spec(responseSpecification()).extract().response();
 		
 		}
 		else if(httpMethod.equalsIgnoreCase("get")) {
+			resource = apiEndPointResources.valueOf(api);
 			response = request.when().get(resource.getResource())
 					.then().spec(responseSpecification()).extract().response();
 		}
 		else if(httpMethod.equalsIgnoreCase("put")) {
+			resource = apiEndPointResources.valueOf(api);
 			response = request.when().put(resource.getResource())
 					.then().spec(responseSpecification()).extract().response();
 		}
 		else if(httpMethod.equalsIgnoreCase("delete")) {
+			resource = apiEndPointResources.valueOf(api);
 			response = request.when().delete(resource.getResource())
 					.then().spec(responseSpecification()).extract().response();
 		}
+		else
+			Assert.fail("Invalid API: " + api);
 	}
 
 	public void valueCheck(Response response, String key, String value) {

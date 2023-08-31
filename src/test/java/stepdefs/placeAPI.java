@@ -2,6 +2,7 @@ package stepdefs;
 
 import java.security.InvalidAlgorithmParameterException;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import resource.*;
 
@@ -11,10 +12,14 @@ public class placeAPI extends utility{
 	
 	dataBuild db = new dataBuild();
 	
-	
 	@Given("Add place payload")
 	public void add_place_payload() {
 		request = given().spec(requestSpecification()).body(db.addPlaceDataBuild());
+	}
+	
+	@Given("Add place payload with {string} {string} {string}")
+	public void add_place_payload(String name, String language, String website) {
+		request = given().spec(requestSpecification()).body(db.addPlaceDataBuild(name, language, website));
 	}
 	
 	@Given("Get place at {string}")
@@ -41,13 +46,16 @@ public class placeAPI extends utility{
 	@And("{string} in reponse is {string}")
 	public void status_in_reponse_is_response_status(String key, String value) {
 		valueCheck(response, key, value);
-		printResponse(response);
 	}
 	
 	@And("verify the place_id maps to {string}")
 	public void verify_the_place_id_maps_to(String name) {
 		mapPlaceIDToName(name);
 	}
-
+	
+	@After
+	public void afterClass() {
+		printResponse(response);
+	}
 
 }

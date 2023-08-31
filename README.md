@@ -7,9 +7,10 @@ JUnit - Unit test\
 Rest Assured - Automate API testing\
 Jackson library - Validate the JSON response\
 Cucumber - Behavior Driven automation framework\
-Pojo - Serialized and Deserialized the payload
+Pojo - Serialized and Deserialized the payload\
+Extent report\
+PDF report
 
 To be implemented:
 =============================================================
-Extent report\
 Excel integration
